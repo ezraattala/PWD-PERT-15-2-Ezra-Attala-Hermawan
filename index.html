@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sistem Pembelian Semen</title>
+</head>
+<body>
+    <h2>Sistem Pembelian Semen</h2>
+    
+    <label>Merk Semen: </label>
+    <input type="text" id="merkSemen"><br><br>
+    
+    <label>Harga per Sak: </label>
+    <input type="number" id="hargaSak"><br><br>
+    
+    <label>Jumlah Pembelian: </label>
+    <input type="number" id="jumlahBeli"><br><br>
+    
+    <button onclick="hitungPembelian()">Hitung</button><br><br>
+    
+    <p id="hasil"></p>
+
+    <script>
+        function hitungPembelian() {
+            var merk = document.getElementById('merkSemen').value;
+            var harga = parseFloat(document.getElementById('hargaSak').value);
+            var jumlah = parseInt(document.getElementById('jumlahBeli').value);
+            
+            var totalHarga = harga * jumlah;
+            var diskon = 0;
+            var biayaPengiriman = 0;
+            
+            if (jumlah < 10) {
+                biayaPengiriman = 5000;
+            } else if (jumlah > 10) {
+                diskon = totalHarga * 0.05;
+            }
+            
+            var totalBayar = totalHarga - diskon + biayaPengiriman;
+            
+            document.getElementById('hasil').innerHTML = 
+                "Merk Semen: " + merk + "<br>" +
+                "Jumlah Pembelian: " + jumlah + " Sak<br>" +
+                "Total Biaya yang Harus Dibayar: Rp." + totalBayar.toLocaleString('id-ID');
+        }
+    </script>
+</body>
+</html>
